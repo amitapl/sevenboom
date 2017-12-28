@@ -1,0 +1,89 @@
+{
+  "languageModel": {
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "Boom",
+        "samples": [
+          "boom"
+        ],
+        "slots": []
+      },
+      {
+        "name": "NewGame",
+        "samples": [
+          "start game",
+          "new game",
+          "reset",
+          "go",
+          "new",
+          "start",
+          "begin game",
+          "begin"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Number",
+        "samples": [
+          "{number}"
+        ],
+        "slots": [
+          {
+            "name": "number",
+            "type": "AMAZON.NUMBER"
+          }
+        ]
+      }
+    ],
+    "invocationName": "seven boom"
+  },
+  "prompts": [
+    {
+      "id": "Confirm.Intent-NewGame",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Do you want to start a new seven boom game?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "NewGame",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirmation": "Confirm.Intent-NewGame"
+        },
+        "slots": []
+      },
+      {
+        "name": "Number",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "number",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  }
+}

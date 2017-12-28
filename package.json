@@ -1,0 +1,17 @@
+{
+  "name": "sevenboom",
+  "version": "1.0.0",
+  "description": "Seven Boom",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amit Apple",
+  "repository": "",
+  "license": "ISC",
+  "dependencies": {
+    "alexa-verifier-middleware": "^1.0.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
