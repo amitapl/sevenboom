@@ -114,7 +114,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   }
 
   return {
-    error: 'Oops, it should be ' + expectedNum + ' and not ' + num + ', try again'
+    error: 'Oops, it should be ' + expectedNumber + ' and not ' + num + ', try again'
   }
 }
 
