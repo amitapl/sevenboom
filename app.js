@@ -25,7 +25,7 @@ function run(port) {
   // this endpoint will be accessible at /alexa/weather_info
   alexaRouter.post('/game', function (req, res) {
     if (req.body.request.type === 'LaunchRequest') {
-      log ('LaunchRequest');
+      log('LaunchRequest');
 
       respond(res,
         {},
@@ -74,7 +74,7 @@ function run(port) {
 }
 
 function handleNumber(req, res, num) {
-  let expectedNumber = req.body.session.attributes && req.body.session.attributes.expectedNumber || 0;
+  let expectedNumber = (req.body.session.attributes && req.body.session.attributes.expectedNumber) || 0;
   let nextNumResult = calculateNextNumber(num, expectedNumber);
 
   log('Number ' + num + ', expectedNumber ' + expectedNumber + ', nextNumResult ' + nextNumResult.error + ' ' + nextNumResult.nextNumber + ' ' + nextNumResult.isBoom);
