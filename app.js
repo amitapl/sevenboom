@@ -48,7 +48,7 @@ function run(port) {
       req.body.request.intent.slots.number &&
       req.body.request.intent.slots.number.value !== undefined) {
 
-      let num = req.body.request.intent.slots.number.value;
+      let num = req.body.request.intent.slots.myNumber.value;
       handleNumber(req, res, num);
     } else if (
       req.body.request.type === 'IntentRequest' &&

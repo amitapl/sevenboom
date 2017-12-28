@@ -37,11 +37,11 @@
       {
         "name": "Number",
         "samples": [
-          "{number}"
+          "go {myNumber}"
         ],
         "slots": [
           {
-            "name": "number",
+            "name": "myNumber",
             "type": "AMAZON.NUMBER"
           }
         ]
@@ -69,20 +69,6 @@
           "confirmation": "Confirm.Intent-NewGame"
         },
         "slots": []
-      },
-      {
-        "name": "Number",
-        "confirmationRequired": false,
-        "prompts": {},
-        "slots": [
-          {
-            "name": "number",
-            "type": "AMAZON.NUMBER",
-            "elicitationRequired": true,
-            "confirmationRequired": false,
-            "prompts": {}
-          }
-        ]
       }
     ]
   }
