@@ -70,7 +70,7 @@ function run(port) {
         respond(res,
           {},
           'This is a simple game, <break time=\"300ms\"/> we count numbers in turns <break time=\"200ms\"/> but if the number has a 7 or can be divided by 7 <break time=\"200ms\"/> you need to say <emphasis level="moderate">BOOM</emphasis> instead of the number <break time=\"500ms\"/>, say <emphasis level="strong">BEGIN</emphasis> to start a game',
-          true);
+          false);
     } else {
       console.error('Intent not implemented: ', req.body);
       res.status(504).json({ message: 'Intent Not Implemented' });
