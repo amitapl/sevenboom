@@ -28,8 +28,8 @@ function run(port) {
       log('LaunchRequest');
 
       respond(res,
-        {},
-        'Say begin to start a new game',
+        { expectedNumber: 2},
+        '1',
         false);
     } else if (req.body.request.type === 'SessionEndedRequest') {
       log('SessionEndedRequest');
@@ -45,8 +45,8 @@ function run(port) {
     } else if (
       req.body.request.type === 'IntentRequest' &&
       req.body.request.intent.name === 'Number' &&
-      req.body.request.intent.slots.number &&
-      req.body.request.intent.slots.number.value !== undefined) {
+      req.body.request.intent.slots.myNumber &&
+      req.body.request.intent.slots.myNumber.value !== undefined) {
 
       let num = req.body.request.intent.slots.myNumber.value;
       handleNumber(req, res, num);
@@ -114,7 +114,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   }
 
   return {
-    error: 'Oops, it should be ' + expectedNumber + ' and not ' + num + ', try again'
+    error: 'Oops, it should be ' + expectedNumber + ' and not ' + num + ', say begin to start over'
   }
 }
 
