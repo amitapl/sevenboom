@@ -27,10 +27,7 @@ function run(port) {
     if (req.body.request.type === 'LaunchRequest') {
       log('LaunchRequest');
 
-      respond(res,
-        { expectedNumber: 2},
-        '1',
-        false);
+      newGameResponse(res);
     } else if (req.body.request.type === 'SessionEndedRequest') {
       log('SessionEndedRequest');
 
@@ -59,11 +56,8 @@ function run(port) {
     } else if (
       req.body.request.type === 'IntentRequest' &&
       req.body.request.intent.name === 'NewGame') {
-        respond(res,
-          { expectedNumber: 2},
-          '1',
-          false);
-    } else {
+        newGameResponse(res);
+      } else {
       console.error('Intent not implemented: ', req.body);
       res.status(504).json({ message: 'Intent Not Implemented' });
     }
@@ -71,6 +65,15 @@ function run(port) {
   app.listen(port);
 
   log('Started ' + port);
+}
+
+function newGameResponse(res) {
+  let starter = selectStarter();
+  
+  respond(res,
+    { expectedNumber: starter ? '2' : '1' },
+    starter ? '1' : 'please start, say 1',
+    false);
 }
 
 function handleNumber(req, res, num) {
@@ -106,10 +109,18 @@ function calculateNextNumber(inputNumber, expectedNumber) {
     };
   }
 
-  return {
-    error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> 1',
-    nextNumber: 1
-  }
+  let starter = selectStarter();
+
+  let response = {
+    error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> ' + starter ? '0' : 'now you start',
+    nextNumber: starter
+  };
+
+  return response;
+}
+
+function selectStarter() {
+  return Math.floor(Math.random() * 2 + 1);
 }
 
 function isNumberBoom(num) {
