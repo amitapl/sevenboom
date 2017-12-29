@@ -112,7 +112,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   let starter = selectStarter();
 
   let response = {
-    error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> ' + starter ? '0' : 'now you start',
+    error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> ' + starter ? '1' : 'now you start',
     nextNumber: starter
   };
 
@@ -120,7 +120,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
 }
 
 function selectStarter() {
-  return Math.floor(Math.random() * 2 + 1);
+  return Math.floor(Math.random() * 2);
 }
 
 function isNumberBoom(num) {
