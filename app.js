@@ -92,6 +92,11 @@ function newGameResponse(res) {
 
 function handleNumber(req, res, num) {
   let expectedNumber = (req.body.session.attributes && req.body.session.attributes.expectedNumber) || 0;
+  if (expectedNumber === 0) {
+    newGameResponse(res);
+    return;
+  }
+
   let nextNumResult = calculateNextNumber(num, expectedNumber);
 
   log('Number ' + num + ', expectedNumber ' + expectedNumber + ', nextNumResult ' + nextNumResult.error + ' ' + nextNumResult.nextNumber + ' ' + nextNumResult.isBoom);
