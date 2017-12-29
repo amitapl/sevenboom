@@ -104,7 +104,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   }
 
   if (num === expectedNumber || (isNumberBoom(expectedNumber) && num === 'boom')) {
-    let nextNumber = expectedNumber++;
+    let nextNumber = expectedNumber + 1;
     let isBoom = isNumberBoom(nextNumber);
 
     return {
