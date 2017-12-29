@@ -36,7 +36,9 @@
       {
         "name": "Number",
         "samples": [
-          "go {myNumber}"
+          "go {myNumber}",
+          "and {myNumber}",
+          "{myNumber}"
         ],
         "slots": [
           {
@@ -47,28 +49,5 @@
       }
     ],
     "invocationName": "seven boom"
-  },
-  "prompts": [
-    {
-      "id": "Confirm.Intent-NewGame",
-      "variations": [
-        {
-          "type": "PlainText",
-          "value": "Do you want to start a new seven boom game?"
-        }
-      ]
-    }
-  ],
-  "dialog": {
-    "intents": [
-      {
-        "name": "NewGame",
-        "confirmationRequired": true,
-        "prompts": {
-          "confirmation": "Confirm.Intent-NewGame"
-        },
-        "slots": []
-      }
-    ]
   }
 }

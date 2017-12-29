@@ -108,7 +108,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
 
   return {
     error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> 1',
-    nextNumber: 2
+    nextNumber: 1
   }
 }
 
