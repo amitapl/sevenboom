@@ -79,17 +79,10 @@ function handleNumber(req, res, num) {
 
   log('Number ' + num + ', expectedNumber ' + expectedNumber + ', nextNumResult ' + nextNumResult.error + ' ' + nextNumResult.nextNumber + ' ' + nextNumResult.isBoom);
 
-  if (nextNumResult.error) {
-    respond(res,
-      { expectedNumber: 2 },
-      nextNumResult.error,
-      false);
-  } else {
-    respond(res,
-      { expectedNumber: nextNumResult.nextNumber + 1},
-      nextNumResult.isBoom ? 'boom' : '' + nextNumResult.nextNumber,
-      false);
-  }
+  respond(res,
+    { expectedNumber: nextNumResult.nextNumber + 1},
+    nextNumResult.error || (nextNumResult.isBoom ? '<emphasis level="moderate">BOOM</emphasis>' : '' + nextNumResult.nextNumber),
+    false);
 }
 
 function calculateNextNumber(inputNumber, expectedNumber) {
@@ -114,7 +107,8 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   }
 
   return {
-    error: 'Oops, <break time=\"1s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"1s\"/> 1'
+    error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> 1',
+    nextNumber: 2
   }
 }
 
