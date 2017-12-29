@@ -69,7 +69,7 @@ function run(port) {
       req.body.request.intent.name === 'AMAZON.HelpIntent') {
         respond(res,
           {},
-          'This is a simple game, <break time=\"0.5s\"/> we count numbers in turns but if the number has a 7 or can be divided by 7 you need to say <emphasis level="moderate">BOOM</emphasis> instead of the number',
+          'This is a simple game, <break time=\"300ms\"/> we count numbers in turns <break time=\"200ms\"/> but if the number has a 7 or can be divided by 7 <break time=\"200ms\"/> you need to say <emphasis level="moderate">BOOM</emphasis> <break time=\"100ms\"/> instead of the number <break time=\"500ms\"/>, say begin to start a game',
           true);
     } else {
       console.error('Intent not implemented: ', req.body);
@@ -126,7 +126,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   let starter = selectStarter();
 
   let response = {
-    error: 'Oops, <break time=\"0.5s\"/> it should be <emphasis level="moderate">' + expectedNumber + '</emphasis> and not <emphasis level="moderate">' + num + '</emphasis>, <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> ' + (starter === 1 ? '1' : 'now you start'),
+    error: 'Oops, <break time=\"500ms\"/> it should be <emphasis level="moderate">' + expectedNumber + '</emphasis> and not <emphasis level="moderate">' + num + '</emphasis>, <break time=\"1s\"/> lets try again <break time=\"500ms\"/> ' + (starter === 1 ? '1' : 'now you start'),
     nextNumber: starter
   };
 
