@@ -85,7 +85,7 @@ function newGameResponse(res) {
   let starter = selectStarter();
   
   respond(res,
-    { expectedNumber: starter === 1 ? 1 : 2 },
+    { expectedNumber: starter === 1 ? 2 : 1 },
     starter === 1 ? '1' : 'please start, say 1',
     false);
 }
