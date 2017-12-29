@@ -57,7 +57,21 @@ function run(port) {
       req.body.request.type === 'IntentRequest' &&
       req.body.request.intent.name === 'NewGame') {
         newGameResponse(res);
-      } else {
+    } else if (
+      req.body.request.type === 'IntentRequest' &&
+      (req.body.request.intent.name === 'AMAZON.StopIntent'|| req.body.request.intent.name === 'AMAZON.CancelIntent')) {
+        respond(res,
+          {},
+          'Thanks for playing',
+          true);
+    } else if (
+      req.body.request.type === 'IntentRequest' &&
+      req.body.request.intent.name === 'AMAZON.HelpIntent') {
+        respond(res,
+          {},
+          'This is a simple game, <break time=\"0.5s\"/> we count numbers in turns but if the number has a 7 or can be divided by 7 you need to say <emphasis level="moderate">BOOM</emphasis> instead of the number',
+          true);
+    } else {
       console.error('Intent not implemented: ', req.body);
       res.status(504).json({ message: 'Intent Not Implemented' });
     }
@@ -112,7 +126,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   let starter = selectStarter();
 
   let response = {
-    error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> ' + (starter === 1 ? 'now you start' : '1'),
+    error: 'Oops, <break time=\"0.5s\"/> it should be <emphasis level="moderate">' + expectedNumber + '</emphasis> and not <emphasis level="moderate">' + num + '</emphasis>, <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> ' + (starter === 1 ? '1' : 'now you start'),
     nextNumber: starter
   };
 
