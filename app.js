@@ -71,7 +71,7 @@ function newGameResponse(res) {
   let starter = selectStarter();
   
   respond(res,
-    { expectedNumber: starter ? '2' : '1' },
+    { expectedNumber: starter ? 2 : 1 },
     starter ? '1' : 'please start, say 1',
     false);
 }
@@ -113,7 +113,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
 
   let response = {
     error: 'Oops, <break time=\"0.5s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"0.5s\"/> ' + starter ? '1' : 'now you start',
-    nextNumber: starter
+    nextNumber: starter + 1
   };
 
   return response;
