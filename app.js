@@ -81,9 +81,9 @@ function handleNumber(req, res, num) {
 
   if (nextNumResult.error) {
     respond(res,
-      {},
+      { expectedNumber: 2 },
       nextNumResult.error,
-      true);
+      false);
   } else {
     respond(res,
       { expectedNumber: nextNumResult.nextNumber + 1},
@@ -114,7 +114,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   }
 
   return {
-    error: 'Oops, it should be ' + expectedNumber + ' and not ' + num + ', say begin to start over'
+    error: 'Oops, <break time=\"1s\"/> it should be ' + expectedNumber + ' and not ' + num + ', <break time=\"1s\"/> lets try again <break time=\"1s\"/> 1'
   }
 }
 
