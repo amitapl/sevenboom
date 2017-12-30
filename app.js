@@ -118,7 +118,8 @@ function calculateNextNumber(inputNumber, expectedNumber) {
     num = undefined;
   }
 
-  if (num === expectedNumber || (isNumberBoom(expectedNumber) && num === 'boom')) {
+  let isNumBoom = isNumberBoom(expectedNumber);
+  if ((!isNumBoom && num === expectedNumber) || (isNumBoom && num === 'boom')) {
     let nextNumber = expectedNumber + 1;
     let isBoom = isNumberBoom(nextNumber);
 
