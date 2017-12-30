@@ -145,7 +145,7 @@ function calculateNextNumber(inputNumber, expectedNumber, retry) {
   }
 
   return {
-    error: 'Oops, <break time=\"300ms\"/> I heard <emphasis level="moderate">' + num + '</emphasis>, <break time=\"500ms\"/> please try again.'),
+    error: 'Oops, <break time=\"300ms\"/> I heard <emphasis level="moderate">' + num + '</emphasis>, <break time=\"500ms\"/> please try again.',
     nextNumber: expectedNumber - 1,
     retry: 1
   };
