@@ -130,6 +130,7 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   }
 
   let starter = selectStarter();
+  let shouldNumber = isNumBoom ? 'BOOM' : expectedNumber;
 
   let response = {
     error: 'Oops, <break time=\"300ms\"/> it should be <emphasis level="moderate">' + expectedNumber + '</emphasis> and not <emphasis level="moderate">' + num + '</emphasis>, <break time=\"500ms\"/> lets try again <break time=\"300ms\"/> ' + (starter === 1 ? '1' : 'now you start'),
