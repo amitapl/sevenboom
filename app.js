@@ -97,17 +97,22 @@ function handleNumber(req, res, num) {
     return;
   }
 
-  let nextNumResult = calculateNextNumber(num, expectedNumber);
+  let retry = (req.body.session.attributes && req.body.session.attributes.retry) || 0;
+  
+  let nextNumResult = calculateNextNumber(num, expectedNumber, retry);
 
   log('Number ' + num + ', expectedNumber ' + expectedNumber + ', nextNumResult ' + nextNumResult.error + ' ' + nextNumResult.nextNumber + ' ' + nextNumResult.isBoom);
 
   respond(res,
-    { expectedNumber: nextNumResult.nextNumber + 1},
+    {
+      expectedNumber: nextNumResult.nextNumber + 1,
+      retry: nextNumResult.retry
+    },
     nextNumResult.error || (nextNumResult.isBoom ? '<emphasis level="moderate">BOOM</emphasis>' : '' + nextNumResult.nextNumber),
     false);
 }
 
-function calculateNextNumber(inputNumber, expectedNumber) {
+function calculateNextNumber(inputNumber, expectedNumber, retry) {
   let num = inputNumber;
   try {
     if (num !== 'boom') {
@@ -132,12 +137,18 @@ function calculateNextNumber(inputNumber, expectedNumber) {
   let starter = selectStarter();
   let shouldNumber = isNumBoom ? 'BOOM' : expectedNumber;
 
-  let response = {
-    error: 'Oops, <break time=\"300ms\"/> it should be <emphasis level="moderate">' + shouldNumber + '</emphasis> and not <emphasis level="moderate">' + num + '</emphasis>, <break time=\"500ms\"/> lets try again <break time=\"300ms\"/> ' + (starter === 1 ? '1' : 'now you start'),
-    nextNumber: starter
-  };
+  if (retry > 0) {
+    return {
+      error: 'Oops, <break time=\"300ms\"/> it should be <emphasis level="moderate">' + shouldNumber + '</emphasis> and not <emphasis level="moderate">' + num + '</emphasis>, <break time=\"500ms\"/> lets try again <break time=\"300ms\"/> ' + (starter === 1 ? '1' : 'now you start'),
+      nextNumber: starter
+    };
+  }
 
-  return response;
+  return {
+    error: 'Oops, <break time=\"300ms\"/> I heard <emphasis level="moderate">' + num + '</emphasis>, <break time=\"500ms\"/> please try again.'),
+    nextNumber: expectedNumber - 1,
+    retry: 1
+  };
 }
 
 function selectStarter() {
