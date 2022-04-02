@@ -10,7 +10,7 @@
   "repository": "",
   "license": "ISC",
   "dependencies": {
-    "alexa-verifier-middleware": "^1.0.1",
+    "alexa-verifier-middleware": "^2.0.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2"
   }
